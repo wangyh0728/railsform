@@ -7,5 +7,8 @@ class CreateItems < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    remove_column :items, :type
+    add_column :items, :category, :string
   end
 end
