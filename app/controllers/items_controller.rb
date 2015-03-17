@@ -5,8 +5,10 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.all
+
     if params[:search]
-      @items = Item.search(params[:search])
+      @type = Type.find_by title: params[:type]
+      @items = Item.search(params[:search], params[:relation], @type.type_id)     
     else
       @items = Item.all
     end

@@ -2,15 +2,39 @@
 <html>
 <head>
   <title>Lostandfound</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <meta charset="utf-8">
+ <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<style>
+#main{
+  margin: 30 auto;
+}
+p{
+  border-style: ridge;
+  border-color: #D0D0D0
+}
+h1 {background-color: transparent;
+color: #66CC33;
+height: 20px;
+center}
+</style>
+  <body>
+<div class="bs-example">
+    <div class="page-header">
+        <h1>Lost And Found </h1>
+    </div>
+</div>
+
 
 <%= form_tag(items_path, method: "get", id: "search-form") do %>
   <%= label_tag(:search, "Search for:") %>
   <%= text_field_tag(:search, params[:search]) %>
+  <%= select_tag(:relation, options_for_select([['OR','OR'], ['AND', 'AND']])) %>
+  <%= label_tag(:type, "Type:") %>
+  <%= select_tag(:type, options_from_collection_for_select(Type.all, :title, :title)) %>
   <%= submit_tag("Search") %>
 <% end %>
 

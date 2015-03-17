@@ -10,5 +10,7 @@ class CreateItems < ActiveRecord::Migration
 
     remove_column :items, :type
     add_column :items, :category, :string
+    add_column :items, :owner, :text
+    add_column :items, :type_id, :integer
   end
 end
